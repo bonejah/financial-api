@@ -3,6 +3,7 @@ package com.bonejah.financialapi.services.impl;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -78,7 +79,7 @@ public class LancamentoServiceImpl implements LancamentoService {
 			throw new RegraNegocioException("Informe um Ano válido.");
 		}
 		
-		if (lancamento.getId() == null || lancamento.getUsuario().getId() == null) {
+		if (lancamento.getUsuario() == null || lancamento.getUsuario().getId() == null) {
 			throw new RegraNegocioException("Informe Usuário.");
 		}
 		
@@ -89,6 +90,11 @@ public class LancamentoServiceImpl implements LancamentoService {
 		if (lancamento.getTipo() == null) {
 			throw new RegraNegocioException("Informe um Tipo de Lancamento.");
 		}
+	}
+
+	@Override
+	public Optional<Lancamento> obterPorId(Long id) {
+		return repository.findById(id);
 	}
 
 }
