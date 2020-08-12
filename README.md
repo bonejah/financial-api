@@ -30,7 +30,7 @@ This project uses technologies likes:
   # Clone repo
   $ git clone https://github.com/bonejah/financial-api
 
-  # Enter folder tictactoe
+  # Enter folder financial-api
   $ cd financial-api
   
   # Import this project into your favorite IDE (Import as Maven Project)
