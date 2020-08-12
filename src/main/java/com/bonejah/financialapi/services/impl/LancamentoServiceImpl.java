@@ -13,6 +13,7 @@ import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
 import com.bonejah.financialapi.enums.StatusLancamento;
+import com.bonejah.financialapi.enums.TipoLancamento;
 import com.bonejah.financialapi.exceptions.RegraNegocioException;
 import com.bonejah.financialapi.models.Lancamento;
 import com.bonejah.financialapi.repositories.LancamentoRepository;
@@ -95,6 +96,23 @@ public class LancamentoServiceImpl implements LancamentoService {
 	@Override
 	public Optional<Lancamento> obterPorId(Long id) {
 		return repository.findById(id);
+	}
+
+	@Transactional()
+	@Override
+	public BigDecimal obterSaldoPorUsuario(Long id) {
+		BigDecimal receitas = repository.obterSaldoPorTipoLancamentoEUsuario(id, TipoLancamento.RECEITA);
+		BigDecimal despesas = repository.obterSaldoPorTipoLancamentoEUsuario(id, TipoLancamento.DESPESA);
+		
+		if (receitas ==null) {
+			receitas = BigDecimal.ZERO;
+		}
+		
+		if (despesas ==null) {
+			despesas = BigDecimal.ZERO;
+		}
+		
+		return  receitas.subtract(despesas);
 	}
 
 }
