@@ -13,7 +13,7 @@
 	<artifactId>financial-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>financial-api</name>
-	<description>Software for financial control</description>
+	<description>Software manage your financial</description>
 
 	<properties>
 		<java.version>1.8</java.version>

@@ -2,8 +2,8 @@
 
 
 # Index
-  - [📝 About](#-about)
-  - [💻 Technologies](#-technologies)
+  - [📝 About](#about)
+  - [💻 Technologies](#technologies)
   - [Instructions to use it](#instructions-to-use-it)
   - [Links](#links)
 

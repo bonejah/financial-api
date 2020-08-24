@@ -17,8 +17,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
-import com.bonejah.financialapi.enums.StatusLancamento;
-import com.bonejah.financialapi.enums.TipoLancamento;
+import com.bonejah.financialapi.enums.StatusBalance;
+import com.bonejah.financialapi.enums.TypeBalance;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,43 +26,43 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "lancamento", schema = "financial_api")
+@Table(name = "balance", schema = "financial_api")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Lancamento {
+public class Balance {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "mes")
-	private Integer mes;
+	@Column(name = "month")
+	private Integer month;
 	
-	@Column(name = "ano")
-	private Integer ano;
+	@Column(name = "year")
+	private Integer year;
 	
-	@Column(name = "descricao")
-	private String descricao;
+	@Column(name = "description")
+	private String description;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario usuario;
+	@JoinColumn(name = "id_user")
+	private User user;
 	
-	@Column(name = "valor")
-	private BigDecimal valor;
+	@Column(name = "value")
+	private BigDecimal value;
 	
 	@Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
-	@Column(name = "data_cadastro")
-	private LocalDateTime dataCadastro;
+	@Column(name = "date_register")
+	private LocalDateTime dateRegister;
 	
 	@Enumerated(value = EnumType.STRING)
-	@Column(name = "tipo")
-	private TipoLancamento tipo;
+	@Column(name = "type")
+	private TypeBalance type;
 	
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "status")
-	private StatusLancamento status;
+	private StatusBalance status;
 	
 }
